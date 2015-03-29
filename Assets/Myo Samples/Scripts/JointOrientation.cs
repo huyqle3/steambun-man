@@ -38,6 +38,13 @@ public class JointOrientation : MonoBehaviour
     // so that actions are only performed upon making them rather than every frame during
     // which they are active.
 
+	public Transform target;
+	private Transform _myTransform;
+	
+	void Awake() {
+		_myTransform = transform;
+	}
+
     // Update is called once per frame.
     void Update ()
     {
@@ -110,13 +117,25 @@ public class JointOrientation : MonoBehaviour
         if (thalmicMyo.xDirection == Thalmic.Myo.XDirection.TowardWrist) {
             // Mirror the rotation around the XZ plane in Unity's coordinate system (XY plane in Myo's coordinate
             // system). This makes the rotation reflect the arm's orientation, rather than that of the Myo armband.
-            transform.rotation = new Quaternion(transform.localRotation.x,
+			transform.rotation = new Quaternion(transform.localRotation.x,
                                                 -transform.localRotation.y,
                                                 transform.localRotation.z,
                                                 -transform.localRotation.w);
         }
-    }
 
+		/*transform.rotation = new Quaternion(transform.localRotation.x,
+		                                    target.localRotation.y,
+		                                    transform.localRotation.z,
+		                                    -transform.localRotation.w);*/
+		/* Quaternion temp = new Quaternion(target.localRotation.x,
+		                                 0,
+		                                 target.localRotation.z,
+		                                 target.localRotation.w);*/
+		//transform.rotation = transform.rotation * temp;
+		//transform.rotation = Quaternion.FromToRotation(target.localRotation, Vector3.forward
+		//_myTransform.rotation = Quaternion.FromToRotation(-Vector3.forward, (new Vector3(target.position.x, target.position.y, target.position.z) - _myTransform.position).normalized);
+	}
+	
     // Compute the angle of rotation clockwise about the forward axis relative to the provided zero roll direction.
     // As the armband is rotated about the forward axis this value will change, regardless of which way the
     // forward vector of the Myo is pointing. The returned value will be between -180 and 180 degrees.
