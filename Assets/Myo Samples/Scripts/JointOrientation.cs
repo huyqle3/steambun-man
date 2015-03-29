@@ -6,13 +6,21 @@ using Pose = Thalmic.Myo.Pose;
 using UnlockType = Thalmic.Myo.UnlockType;
 using VibrationType = Thalmic.Myo.VibrationType;
 using System;
-//using System.Diagnostics;
 using System.Threading;
+
+
+using UnityEngine;
+using UnitySampleAssets.CrossPlatformInput;
+
+
 
 // Orient the object to match that of the Myo armband.
 // Compensate for initial yaw (orientation about the gravity vector) and roll (orientation about
 // the wearer's arm) by allowing the user to set a reference orientation.
 // Making the fingers spread pose or pressing the 'r' key resets the reference orientation.
+using CompleteProject;
+
+
 public class JointOrientation : MonoBehaviour
 {
     // Myo game object to connect with.
@@ -32,18 +40,50 @@ public class JointOrientation : MonoBehaviour
 	private int timeElapsed = 100;
 	private int start = 0;
 
-	private float baseRoll = 500.0f;
+	private float baseRoll = 150.0f;
+
+
+	//=============================================================
+	public int damagePerShot = 20;                  // The damage inflicted by each bullet.
+	public float timeBetweenBullets = 0.15f;        // The time between each shot.
+	public float range = 100f;                      // The distance the gun can fire.
+	public GameObject weaponBun;
+	
+	float timer;                                    // A timer to determine when to fire.
+	Ray shootRay;                                   // A ray from the gun end forwards.
+	RaycastHit shootHit;                            // A raycast hit to get information about what was hit.
+	int shootableMask;                              // A layer mask so the raycast only hits things on the shootable layer.
+	ParticleSystem gunParticles;                    // Reference to the particle system.
+	LineRenderer gunLine;                           // Reference to the line renderer.
+	AudioSource gunAudio;                           // Reference to the audio source.
+	Light gunLight;                                 // Reference to the light component.
+	float effectsDisplayTime = 0.2f;                // The proportion of the timeBetweenBullets that the effects will display for.
+
+
+	//==============================================================
 	
     // The pose from the last update. This is used to determine if the pose has changed
     // so that actions are only performed upon making them rather than every frame during
     // which they are active.
 
 	public Transform target;
-	private Transform _myTransform;
-	
+	// private Transform _myTransform;
+
+
 	void Awake() {
-		_myTransform = transform;
+
+		//===============================================
+		// Create a layer mask for the Shootable layer.
+		shootableMask = LayerMask.GetMask ("Shootable");
+		
+		// Set up the references.
+		gunParticles = GetComponent<ParticleSystem> ();
+		gunLine = GetComponent <LineRenderer> ();
+		gunAudio = GetComponent<AudioSource> ();
+		gunLight = GetComponent<Light> ();
+		//================================================
 	}
+
 
     // Update is called once per frame.
     void Update ()
@@ -88,7 +128,8 @@ public class JointOrientation : MonoBehaviour
 
 
 		//==============My Section, will vibrate if object is thrown =======================
-		float throwRoll = thalmicMyo.gyroscope.x;
+		float throwRoll = Math.Abs(thalmicMyo.gyroscope.z);
+		Debug.Log (thalmicMyo.gyroscope.z);
 
 
 		int secondsSinceEpoch = (int)t.TotalSeconds;
@@ -96,6 +137,7 @@ public class JointOrientation : MonoBehaviour
 
 		if (throwRoll > baseRoll && timeElapsed > 1) {
 			thalmicMyo.Vibrate (VibrationType.Medium);
+			Shoot ();
 			ExtendUnlockAndNotifyUserAction (thalmicMyo);
 			Debug.Log ("Object Thrown");
 			start = secondsSinceEpoch;
@@ -123,17 +165,6 @@ public class JointOrientation : MonoBehaviour
                                                 -transform.localRotation.w);
         }
 
-		/*transform.rotation = new Quaternion(transform.localRotation.x,
-		                                    target.localRotation.y,
-		                                    transform.localRotation.z,
-		                                    -transform.localRotation.w);*/
-		/* Quaternion temp = new Quaternion(target.localRotation.x,
-		                                 0,
-		                                 target.localRotation.z,
-		                                 target.localRotation.w);*/
-		//transform.rotation = transform.rotation * temp;
-		//transform.rotation = Quaternion.FromToRotation(target.localRotation, Vector3.forward
-		//_myTransform.rotation = Quaternion.FromToRotation(-Vector3.forward, (new Vector3(target.position.x, target.position.y, target.position.z) - _myTransform.position).normalized);
 	}
 	
     // Compute the angle of rotation clockwise about the forward axis relative to the provided zero roll direction.
@@ -195,4 +226,62 @@ public class JointOrientation : MonoBehaviour
 
         myo.NotifyUserAction ();
     }
+	//========================================================
+	public void DisableEffects ()
+	{
+		// Disable the line renderer and the light.
+		gunLine.enabled = false;
+		gunLight.enabled = false;
+	}
+
+	void Shoot ()
+	{
+		// Reset the timer.
+		timer = 0f;
+		
+		
+		Instantiate (weaponBun, transform.position, transform.rotation);
+		
+		
+		// Play the gun shot audioclip.
+		gunAudio.Play ();
+		
+		// Enable the light.
+		//gunLight.enabled = true;
+		
+		// Stop the particles from playing if they were, then start the particles.
+		//gunParticles.Stop ();
+		//gunParticles.Play ();
+		
+		// Enable the line renderer and set it's first position to be the end of the gun.
+		gunLine.enabled = true;
+		gunLine.SetPosition (0, transform.position);
+		
+		// Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
+		shootRay.origin = transform.position;
+		shootRay.direction = transform.forward;
+		
+		// Perform the raycast against gameobjects on the shootable layer and if it hits something...
+		if(Physics.Raycast (shootRay, out shootHit, range, shootableMask))
+		{
+			// Try and find an EnemyHealth script on the gameobject hit.
+			BUEnemyHealth enemyHealth = shootHit.collider.GetComponent <BUEnemyHealth> ();
+			
+			// If the EnemyHealth component exist...
+			if(enemyHealth != null)
+			{
+				// ... the enemy should take damage.
+				enemyHealth.TakeDamage (damagePerShot, shootHit.point);
+			}
+			
+			// Set the second position of the line renderer to the point the raycast hit.
+			gunLine.SetPosition (1, shootHit.point);
+		}
+		// If the raycast didn't hit anything on the shootable layer...
+		else
+		{
+			// ... set the second position of the line renderer to the fullest extent of the gun's range.
+			gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
+		}
+	}
 }

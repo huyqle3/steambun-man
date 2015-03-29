@@ -1,8 +1,13 @@
 fileFormatVersion: 2
 guid: d5674e407eb1d41e2bff42bedb2741b2
+timeCreated: 1427632691
+licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - myo: {instanceID: 0}
+  - weaponBun: {fileID: 100000, guid: 7b90f49844941314086a8347073aa1d2, type: 3}
+  - target: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
