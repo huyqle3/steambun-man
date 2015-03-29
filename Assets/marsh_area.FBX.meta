@@ -1,0 +1,318 @@
+fileFormatVersion: 2
+guid: eb9122cd031de5f4d924e67af750b917
+timeCreated: 1427608982
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Block 1 Buildings
+    100002: Block 2 Buildings
+    100004: Box011
+    100006: Box013
+    100008: Box015
+    100010: Box017
+    100012: Box024
+    100014: Box025
+    100016: Box026
+    100018: Box027
+    100020: Box028
+    100022: Box029
+    100024: Box030
+    100026: Box031
+    100028: Box032
+    100030: Box033
+    100032: Box034
+    100034: Box035
+    100036: Box036
+    100038: Box037
+    100040: Box038
+    100042: Box039
+    100044: Box040
+    100046: Box041
+    100048: Box042
+    100050: Box043
+    100052: Box044
+    100054: Box045
+    100056: Box046
+    100058: Box047
+    100060: Box048
+    100062: Box049
+    100064: Box051
+    100066: Box052
+    100068: Bumpers
+    100070: Camera001
+    100072: Camera001.Target
+    100074: CAS Marsh STH
+    100076: Guitar Center
+    100078: Marsh Plaza Ground
+    100080: //RootNode
+    100082: Nud Pub
+    100084: PHO
+    100086: Player Camera
+    100088: Radio Shack
+    100090: Rails
+    100092: Rails01
+    100094: Rails02
+    100096: Rails03
+    100098: Rails04
+    100100: Road Bumps
+    100102: skp1164_001
+    100104: skp1164_002
+    100106: skp1164_003
+    100108: St. Mary's street incline
+    100110: Warren Towers
+    400000: Block 1 Buildings
+    400002: Block 2 Buildings
+    400004: Box011
+    400006: Box013
+    400008: Box015
+    400010: Box017
+    400012: Box024
+    400014: Box025
+    400016: Box026
+    400018: Box027
+    400020: Box028
+    400022: Box029
+    400024: Box030
+    400026: Box031
+    400028: Box032
+    400030: Box033
+    400032: Box034
+    400034: Box035
+    400036: Box036
+    400038: Box037
+    400040: Box038
+    400042: Box039
+    400044: Box040
+    400046: Box041
+    400048: Box042
+    400050: Box043
+    400052: Box044
+    400054: Box045
+    400056: Box046
+    400058: Box047
+    400060: Box048
+    400062: Box049
+    400064: Box051
+    400066: Box052
+    400068: Bumpers
+    400070: Camera001
+    400072: Camera001.Target
+    400074: CAS Marsh STH
+    400076: Guitar Center
+    400078: Marsh Plaza Ground
+    400080: //RootNode
+    400082: Nud Pub
+    400084: PHO
+    400086: Player Camera
+    400088: Radio Shack
+    400090: Rails
+    400092: Rails01
+    400094: Rails02
+    400096: Rails03
+    400098: Rails04
+    400100: Road Bumps
+    400102: skp1164_001
+    400104: skp1164_002
+    400106: skp1164_003
+    400108: St. Mary's street incline
+    400110: Warren Towers
+    2300000: Box011
+    2300002: Box013
+    2300004: Box015
+    2300006: Box017
+    2300008: Box024
+    2300010: Box025
+    2300012: Box026
+    2300014: Box027
+    2300016: Box028
+    2300018: Box029
+    2300020: Box030
+    2300022: Box031
+    2300024: Box032
+    2300026: Box033
+    2300028: Box034
+    2300030: Box035
+    2300032: Box036
+    2300034: Box037
+    2300036: Box038
+    2300038: Box039
+    2300040: Box040
+    2300042: Box041
+    2300044: Box042
+    2300046: Box043
+    2300048: Box044
+    2300050: Box045
+    2300052: Box046
+    2300054: Box047
+    2300056: Box048
+    2300058: Box049
+    2300060: Box051
+    2300062: Box052
+    2300064: CAS Marsh STH
+    2300066: Guitar Center
+    2300068: Marsh Plaza Ground
+    2300070: Nud Pub
+    2300072: PHO
+    2300074: Radio Shack
+    2300076: Rails01
+    2300078: Rails02
+    2300080: Rails03
+    2300082: Rails04
+    2300084: Road Bumps
+    2300086: skp1164_001
+    2300088: skp1164_002
+    2300090: skp1164_003
+    2300092: St. Mary's street incline
+    3300000: Box011
+    3300002: Box013
+    3300004: Box015
+    3300006: Box017
+    3300008: Box024
+    3300010: Box025
+    3300012: Box026
+    3300014: Box027
+    3300016: Box028
+    3300018: Box029
+    3300020: Box030
+    3300022: Box031
+    3300024: Box032
+    3300026: Box033
+    3300028: Box034
+    3300030: Box035
+    3300032: Box036
+    3300034: Box037
+    3300036: Box038
+    3300038: Box039
+    3300040: Box040
+    3300042: Box041
+    3300044: Box042
+    3300046: Box043
+    3300048: Box044
+    3300050: Box045
+    3300052: Box046
+    3300054: Box047
+    3300056: Box048
+    3300058: Box049
+    3300060: Box051
+    3300062: Box052
+    3300064: CAS Marsh STH
+    3300066: Guitar Center
+    3300068: Marsh Plaza Ground
+    3300070: Nud Pub
+    3300072: PHO
+    3300074: Radio Shack
+    3300076: Rails01
+    3300078: Rails02
+    3300080: Rails03
+    3300082: Rails04
+    3300084: Road Bumps
+    3300086: skp1164_001
+    3300088: skp1164_002
+    3300090: skp1164_003
+    3300092: St. Mary's street incline
+    4300000: CAS Marsh STH
+    4300002: St. Mary's street incline
+    4300004: Box015
+    4300006: skp1164_003
+    4300008: skp1164_002
+    4300010: skp1164_001
+    4300012: Marsh Plaza Ground
+    4300014: Box048
+    4300016: Box047
+    4300018: Box046
+    4300020: Box045
+    4300022: Box044
+    4300024: Box043
+    4300026: Box042
+    4300028: Box041
+    4300030: Box040
+    4300032: Box039
+    4300034: Box038
+    4300036: Box037
+    4300038: Box036
+    4300040: Box035
+    4300042: Box034
+    4300044: Box033
+    4300046: Box032
+    4300048: Box031
+    4300050: Box030
+    4300052: Box029
+    4300054: Box028
+    4300056: Box027
+    4300058: Box026
+    4300060: Box024
+    4300062: Box025
+    4300064: Box017
+    4300066: Box013
+    4300068: Box011
+    4300070: Nud Pub
+    4300072: Radio Shack
+    4300074: Guitar Center
+    4300076: PHO
+    4300078: Road Bumps
+    4300080: Rails01
+    4300082: Rails02
+    4300084: Rails03
+    4300086: Rails04
+    4300088: Box049
+    4300090: Box051
+    4300092: Box052
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
